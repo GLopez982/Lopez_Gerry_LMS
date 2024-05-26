@@ -1,3 +1,8 @@
+/* GERRY LOPEZ
+ * CEN-3024C
+ * CLASS FUNCTION: THIS CLASS IS INTENDED TO ADD BOOKS TO A COLLECTION OF BOOK OBJECTS IN AN ARRAY LIST,
+ * ALLOW THE USER TO REMOVE BOOKS FROM THE COLLECTION AND DISPLAY THE BOOKS IN THE COLLECTION.  
+ */
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,49 +15,43 @@ import static java.nio.file.StandardOpenOption.READ;
 
 public class BookCollection {
     
-    //BOOKCOLLECTION ARRAY LIST USED TO COLLECT SUBMITTED BOOKS
+    
     private ArrayList<Book> bookCollection;
-    
-    
-
 
     
-    //CONSTRUCTOR FOR THE BOOKCOLLECTION THAT INITIALIZES THE ARRAYLIST 
     public BookCollection() {
         this.bookCollection = new ArrayList<>();
         
         
     }
 
-
-
-
-    //METHOD FOR ADDING BOOK DATA FROM A TEXT FILE TO THE COLLECTION. THE METHOD USES A PATH TO GET THE TEXT FILE LOCATION DATA
+    /*METHOD FOR ADDING BOOK DATA FROM A TEXT FILE TO THE COLLECTION. THE METHOD USES A PATH PARAMATER TO GET THE TEXT FILE LOCATION OF THE DATA
+    * THE METHOD WILL COLLECT THE DATA FROM THE TEXT, SPLIT THE COLLECTED DATA INTO THREE STRINGS AND THEN STORE THE STRING DATA IN A BOOK OBJECT.
+    * THE BOOK OBJECT WILL THEN BE STORED TO AN ARRAY LIST OF BOOK OBJECTS TO CREATE THE BOOK COLLECTION. 
+    */
     public void addBookToCollection(Path file){
 
        try{
             
-            //INPUT STREAM USED FOR READING THE TEXT FILE AND A BUFFERED READER TO READ THE DATA THROUGH THE STREAM. 
+           
             InputStream input = new BufferedInputStream(Files.newInputStream(file, READ));
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-            //AN EMPTY STRING ASSIGNED TO READ THE LINES OF THE TEXT FILE
             String emptyString = reader.readLine();
 
-            //IF THE EMPTY STRING IS NOT NULL THE CODE WILL CONTINUE TO READ THE LINE AND GATHER BOOK DATA.            
+            
             while(emptyString != null){
                 
-                //DELIMITER FOR SPLITTING THE STRING AND A STRING ARRAY FOR COLLECTING THE THREE REQUIRED BOOK DATA VARIABLES.
+               
                 String delimit = ",";
                 String[] fileStrings = new String[3];
                 fileStrings = emptyString.split(delimit);
-                //IF LOOP FOR CHECKING IF THE FILESTRING DATA WAS SPLIT INTO 3 ARRAY INDEXES. 
-                //IF THE SPLIT EQUALS 3 THE CODE WILL ASSIGN INTIALIZE AND NEW BOOK AND STORE IT IN THE BOOKCOLLECTION ARRAYLIST.
+                
                 if(fileStrings.length == 3){
                     Book book = new Book(fileStrings[0], fileStrings[1], fileStrings[2]);
                     bookCollection.add(book);
                     
-                    //READS THE NEXT LINE TO SEE IF IT IS NULL OR IF THE LOOP SHOULD PROCEED. 
+                   
                     emptyString = reader.readLine();
 
                 }
@@ -65,9 +64,13 @@ public class BookCollection {
 
      
         }
-       
-    }//END OF ADD BOOKS TO COLLECTION METHOD. 
+   
+    }
 
+    
+    /* METHOD FOR REMOVING A BOOK FROM THE COLLECTION OF BOOKS. 
+     * THE METHOD TAKES A STRING ARGUMENT AND CHECKS TO SEE IF THE PROVIDED ID STRING MATCHES ONE IN THE BOOK COLLECTION.
+     * IF THE ID MATCHES, THE BOOK IS REMOVED FROM TEH COLLECTION AND THE METHOD ENDS. */
 
     public void removeBooksFromCollection(String id){
         Book removedBook = null;
@@ -87,6 +90,9 @@ public class BookCollection {
         
     }
 
+    /* METHOD FOR DISPLAYING THE BOOKS CONTAINED WITHIN THE COLLECTION. 
+     * USES THE OVERRIDDEN TOSTRING CREATED IN THE BOOK OBJECT TO PROVIDE 
+     * THE DATA FOR THE BOOKS IN THE COLLECTION. */
     public void displayBooks(){
         for(Book book : bookCollection){
             System.out.println(book);

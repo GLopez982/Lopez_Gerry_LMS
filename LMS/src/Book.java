@@ -1,20 +1,21 @@
+/* Gerry Lopez
+ * CEN-3024C
+ * CLASS FUNCTION: This class is intended to store a book object consisting of a the book ID, the book title and book author. 
+ */
+
 public class Book {
 
     private String bookID;
     private String bookTitle;
     private String bookAuthor;
 
-
-    
-    
-
-
+ 
     public Book(String bookID, String bookTitle, String bookAuthor) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
 
-
+   
     }
     public void setBookID(String bookID) {
         this.bookID = bookID;
