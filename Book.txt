@@ -1,14 +1,13 @@
 /* Gerry Lopez
  * CEN-3024C
- * CLASS FUNCTION: This class is intended to store a book object consisting of a the book ID, the book title and book author. 
+ * CLASS FUNCTION: This class is intended to store a book object consisting of the book ID, the book title and book author.
  */
 
 public class Book {
 
-    private String bookID; 
+    private String bookID;
     private String bookTitle;
     private String bookAuthor;
-    private String bookStatus = null;
 
     public Book(String bookID, String bookTitle, String bookAuthor) {
         this.bookID = bookID;
@@ -29,10 +28,6 @@ public class Book {
         this.bookAuthor = bookAuthor;
     }
 
-    public void setBookStatus(String bookStatus){
-        this.bookStatus = bookStatus;
-    }
-
     public String getBookID() {
         return bookID;
     }
@@ -45,14 +40,10 @@ public class Book {
         return bookAuthor;
     }
 
-    public String getBookStatus(){
-        return bookStatus;
-    }
-
     // OVERRIDDEN TOSTRING METHOD FOR DISPLAYING THE BOOK DATA
     @Override
     public String toString() {
-        return "ID#" + bookID + ", Book Title: " + bookTitle + ", Book Author: " + bookAuthor + " Book Status: " + bookStatus;
+        return "ID#" + bookID + ", Book Title: " + bookTitle + ", Book Author: " + bookAuthor;
     }
 
 }

@@ -1,2 +1,2 @@
-3,The Big-Mac,Mac Donald
-4,Fat Cat: The Cereal Killer,Catherine Morgan
+3,THE BIG-MAC,MAC DONALD
+4,FAT CAT: THE CEREAL KILLER,CATHERINE MORGAN
