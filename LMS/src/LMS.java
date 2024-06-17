@@ -44,18 +44,18 @@ public class LMS {
 
                 case 'R':
                     char userRemoveChoice = ' ';
-                    System.out.println("Enter 'I' to remove book by ID number,'T' to remove by title or 'E to exit");
+                    System.out.println("Enter 'I' to remove book by ISBN number,'T' to remove by title or 'E to exit");
                     userRemoveChoice = keyboard.nextLine().toUpperCase().charAt(0);
 
                         switch(userRemoveChoice){
                             case 'I':
-                                System.out.println("Please provide a book id to remove from the collection. ");
+                                System.out.println("Please provide a book ISBN number to remove the book from the collection. ");
                                 String bookID = keyboard.nextLine();
                                 collection.removeBooksFromCollection(bookID);
                                 break;
                             
                             case 'T':
-                                System.out.println("Please provide a book title to remove from the collection. ");
+                                System.out.println("Please provide a book title to remove the book from the collection. ");
                                 String bookTitle = keyboard.nextLine();
                                 collection.removeBookByTitle(bookTitle);
                                 break;

@@ -1,24 +1,28 @@
-/* Gerry Lopez
+/* GERRY LOPEZ
  * CEN-3024C
- * CLASS FUNCTION: This class is intended to store a book object consisting of a the book ID, the book title and book author. 
+ * CLASS FUNCTION: THIS CLASS IS INTENDED TO STORE A BOOK OBJECT CONSISTING OF A THE BOOK ISBN, THE BOOK TITLE AND BOOK AUTHOR. 
  */
+
+import java.time.LocalDateTime;
 
 public class Book {
 
-    private String bookID; 
+    private String bookISBN; 
     private String bookTitle;
     private String bookAuthor;
-    private String bookStatus = null;
+    private String bookStatus = "Checked In";
+    private LocalDateTime checkOutDate;
+    private LocalDateTime returnDate;
 
-    public Book(String bookID, String bookTitle, String bookAuthor) {
-        this.bookID = bookID;
+    public Book(String bookISBN, String bookTitle, String bookAuthor) {
+        this.bookISBN = bookISBN;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
 
     }
 
-    public void setBookID(String bookID) {
-        this.bookID = bookID;
+    public void setBookISBN(String bookISBN) {
+        this.bookISBN = bookISBN;
     }
 
     public void setBookTitle(String bookTitle) {
@@ -33,8 +37,16 @@ public class Book {
         this.bookStatus = bookStatus;
     }
 
-    public String getBookID() {
-        return bookID;
+    public void setCheckOutDate(LocalDateTime checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public String getBookISBN() {
+        return bookISBN;
     }
 
     public String getBookTitle() {
@@ -48,11 +60,19 @@ public class Book {
     public String getBookStatus(){
         return bookStatus;
     }
+    
+    public LocalDateTime getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public LocalDateTime getReturnDate() {
+        return returnDate;
+    }
 
     // OVERRIDDEN TOSTRING METHOD FOR DISPLAYING THE BOOK DATA
     @Override
     public String toString() {
-        return "ID#" + bookID + ", Book Title: " + bookTitle + ", Book Author: " + bookAuthor + " Book Status: " + bookStatus;
+        return "ISBN NUMBER: " + bookISBN + ", Book Title: " + bookTitle + ", Book Author: " + bookAuthor + ", \nBook Status: " + bookStatus + ", Check-Out Date: " + checkOutDate + ", Return Date: " + returnDate;
     }
 
 }
