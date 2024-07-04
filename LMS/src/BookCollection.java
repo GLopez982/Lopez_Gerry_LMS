@@ -13,7 +13,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import static java.nio.file.StandardOpenOption.READ;
+
+import java.awt.Dimension;
 
 public class BookCollection {
 
@@ -59,6 +65,7 @@ public class BookCollection {
 
         } catch (IOException exception) {
             System.out.println("Error>>>" + exception.getMessage());
+            JOptionPane.showMessageDialog(null, "Error>>>" + exception.getMessage());
 
         }
 
@@ -85,6 +92,10 @@ public class BookCollection {
 
         if (removedBook != null) {
             bookCollection.remove(removedBook);
+            JOptionPane.showMessageDialog(null, "Book Removed");
+        }else{
+            JOptionPane.showMessageDialog(null,"Invalid ISBN");
+
         }
 
     }
@@ -108,12 +119,16 @@ public class BookCollection {
         }
         if(removedBook != null){
             bookCollection.remove(removedBook);
+            JOptionPane.showMessageDialog(null, "Book Removed");
         }
+        else{
+            JOptionPane.showMessageDialog(null,"Invalid title");
+            }
     }
 
     /*
      * METHOD FOR DISPLAYING THE BOOKS CONTAINED WITHIN THE COLLECTION.
-     * USES THE OVERRIDDEN TOSTRING CREAqTED IN THE BOOK OBJECT TO PROVIDE
+     * USES THE OVERRIDDEN TOSTRING CREATED IN THE BOOK OBJECT TO PROVIDE
      * THE DATA FOR THE BOOKS IN THE COLLECTION.
      */
     public void displayBooks() {
@@ -121,6 +136,29 @@ public class BookCollection {
             System.out.println(book);
         }
     }
+
+    /* METHOD FOR DISPLAYING THE BOOKS CONTAINED WITHIN THE COLLECTION
+     * WITHIN A JTEXTAREA WITH A SCROLLPANE. 
+    */
+
+    public void displayBooksInFrame(JTextArea area, JScrollPane scrollPane){
+        StringBuilder textString = new StringBuilder();
+     
+       
+        for(Book book : bookCollection){
+            textString.append(book.toString()).append("\n\n");
+        }
+       
+        area.setText(textString.toString());
+        area.setSize(area.getPreferredSize());
+        area.setCaretPosition(0);
+        scrollPane.setPreferredSize(new Dimension(area.getWidth(), area.getHeight()));
+        scrollPane.revalidate();
+        scrollPane.repaint();
+        
+        
+    }
+    
 
     /*METHOD FOR CHECKING OUT A BOOK THAT IS CONTAINED WITHIN THE COLLECTION 
      *USES A STRING PROVIDED BY THE USER TO LOCATE THE BOOK TITLE WITHIN THE COLLECTION
@@ -137,6 +175,7 @@ public class BookCollection {
                     book.setCheckOutDate(today);
                     book.setReturnDate(today.plusWeeks(4));
                     System.out.println("....Book checked out");
+                    JOptionPane.showMessageDialog(null,"Book checked out");
                     break;
                     
                 
@@ -146,13 +185,16 @@ public class BookCollection {
                 }   
             
             }else if(!book.getBookTitle().equals(bookTitle)){
+                JOptionPane.showMessageDialog(null, "Invalid title provided for checkout" );
                 System.out.println("Invalid title provided for checkout");
+                
 
             }
         }    
 
     }
-    
+
+  
     /*METHOD FOR CHECKING IN A BOOK THAT IS CONTAINED WITHIN THE COLLECTION 
      *USES A STRING PROVIDED BY THE USER TO LOCATE THE BOOK TITLE WITHIN THE COLLECTION.
      IF THE TITLE IS FOUND, THE BOOK STATUS IS UPDATED TO AVAILABLE, 
@@ -168,9 +210,11 @@ public class BookCollection {
                     book.setCheckOutDate(returned);
                     book.setReturnDate(returned);
                     System.out.println("..Book checked in, Now available");
+                    JOptionPane.showMessageDialog(null,"Book checked in, now available");
                     break;
                     
                 }else{
+                    JOptionPane.showMessageDialog(null, "Invalid title provided for check-in" );
                     System.out.println("Invalid Title provided");
                     
                 }

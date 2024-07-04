@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LMSFrame",
+            "request": "launch",
+            "mainClass": "LMSFrame",
+            "projectName": "LMS_29eac2fe"
+        },
+        {
+            "type": "java",
             "name": "LMS",
             "request": "launch",
             "mainClass": "LMS",
