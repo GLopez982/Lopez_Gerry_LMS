@@ -18,8 +18,8 @@ public class Book {
         this.bookISBN = bookISBN;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
-
     }
+
 
     public void setBookISBN(String bookISBN) {
         this.bookISBN = bookISBN;

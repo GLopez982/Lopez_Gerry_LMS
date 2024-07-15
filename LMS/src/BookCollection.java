@@ -11,6 +11,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -93,37 +97,36 @@ public class BookCollection {
         if (removedBook != null) {
             bookCollection.remove(removedBook);
             JOptionPane.showMessageDialog(null, "Book Removed");
-        }else{
-            JOptionPane.showMessageDialog(null,"Invalid ISBN");
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid ISBN");
 
         }
 
     }
 
-     /*
+    /*
      * METHOD FOR REMOVING A BOOK FROM THE COLLECTION OF BOOKS.
      * THE METHOD TAKES A STRING ARGUMENT AND CHECKS TO SEE IF THE PROVIDED Title
      * STRING MATCHES ONE IN THE BOOK COLLECTION.
      * IF THE Title MATCHES, THE BOOK IS REMOVED FROM TEH COLLECTION AND THE METHOD
      * ENDS.
      */
-    public void removeBookByTitle(String title){
+    public void removeBookByTitle(String title) {
         Book removedBook = null;
 
-        for(Book book : bookCollection){
-            if(book.getBookTitle().toUpperCase().equals(title.toUpperCase())){
+        for (Book book : bookCollection) {
+            if (book.getBookTitle().toUpperCase().equals(title.toUpperCase())) {
                 removedBook = book;
                 break;
             }
 
         }
-        if(removedBook != null){
+        if (removedBook != null) {
             bookCollection.remove(removedBook);
             JOptionPane.showMessageDialog(null, "Book Removed");
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid title");
         }
-        else{
-            JOptionPane.showMessageDialog(null,"Invalid title");
-            }
     }
 
     /*
@@ -137,96 +140,94 @@ public class BookCollection {
         }
     }
 
-    /* METHOD FOR DISPLAYING THE BOOKS CONTAINED WITHIN THE COLLECTION
-     * WITHIN A JTEXTAREA WITH A SCROLLPANE. 
-    */
+    /*
+     * METHOD FOR DISPLAYING THE BOOKS CONTAINED WITHIN THE COLLECTION
+     * WITHIN A JTEXTAREA WITH A SCROLLPANE.
+     */
 
-    public void displayBooksInFrame(JTextArea area, JScrollPane scrollPane){
+    public void displayBooksInFrame(JTextArea area, JScrollPane scrollPane) {
         StringBuilder textString = new StringBuilder();
-     
-       
-        for(Book book : bookCollection){
+
+        for (Book book : bookCollection) {
             textString.append(book.toString()).append("\n\n");
         }
-       
+
         area.setText(textString.toString());
         area.setSize(area.getPreferredSize());
         area.setCaretPosition(0);
         scrollPane.setPreferredSize(new Dimension(area.getWidth(), area.getHeight()));
         scrollPane.revalidate();
         scrollPane.repaint();
-        
-        
-    }
-    
 
-    /*METHOD FOR CHECKING OUT A BOOK THAT IS CONTAINED WITHIN THE COLLECTION 
-     *USES A STRING PROVIDED BY THE USER TO LOCATE THE BOOK TITLE WITHIN THE COLLECTION
-     IF THE TITLE IS FOUND, THE BOOK STATUS IS UPDATED TO CHECKED OUT, 
-     IF NOT AN ERROR MESSAGE IS PROVIDED FOR THE USER
-    */
-    public void checkOutBook(String bookTitle){
-        for(Book book : bookCollection){
-            if(book.getBookStatus().equals(null) || book.getBookStatus().equals("Checked In")){
-                if(book.getBookTitle().toUpperCase().equals(bookTitle.toUpperCase())){
+    }
+
+    /*
+     * METHOD FOR CHECKING OUT A BOOK THAT IS CONTAINED WITHIN THE COLLECTION
+     * USES A STRING PROVIDED BY THE USER TO LOCATE THE BOOK TITLE WITHIN THE
+     * COLLECTION
+     * IF THE TITLE IS FOUND, THE BOOK STATUS IS UPDATED TO CHECKED OUT,
+     * IF NOT AN ERROR MESSAGE IS PROVIDED FOR THE USER
+     */
+    public void checkOutBook(String bookTitle) {
+        for (Book book : bookCollection) {
+            if (book.getBookStatus().equals(null) || book.getBookStatus().equals("Checked In")) {
+                if (book.getBookTitle().toUpperCase().equals(bookTitle.toUpperCase())) {
                     LocalDateTime today = LocalDateTime.now();
                     System.out.println("Checking out book...");
                     book.setBookStatus("Checked Out");
                     book.setCheckOutDate(today);
                     book.setReturnDate(today.plusWeeks(4));
                     System.out.println("....Book checked out");
-                    JOptionPane.showMessageDialog(null,"Book checked out");
+                    JOptionPane.showMessageDialog(null, "Book checked out");
                     break;
-                    
-                
-                
-                }else {
+
+                } else {
                     continue;
-                }   
-            
-            }else if(!book.getBookTitle().equals(bookTitle)){
-                JOptionPane.showMessageDialog(null, "Invalid title provided for checkout" );
+                }
+
+            } else if (!book.getBookTitle().equals(bookTitle)) {
+                JOptionPane.showMessageDialog(null, "Invalid title provided for checkout");
                 System.out.println("Invalid title provided for checkout");
-                
 
             }
-        }    
+        }
 
     }
 
-  
-    /*METHOD FOR CHECKING IN A BOOK THAT IS CONTAINED WITHIN THE COLLECTION 
-     *USES A STRING PROVIDED BY THE USER TO LOCATE THE BOOK TITLE WITHIN THE COLLECTION.
-     IF THE TITLE IS FOUND, THE BOOK STATUS IS UPDATED TO AVAILABLE, 
-     IF NOT AN ERROR MESSAGE IS PROVIDED FOR THE USER
-    */
-    public void checkInBook(String bookTitle){
-        for(Book book : bookCollection){
-            if(book.getBookStatus().equals("Checked Out")){
-                if(book.getBookTitle().toUpperCase().equals(bookTitle.toUpperCase())){
+    /*
+     * METHOD FOR CHECKING IN A BOOK THAT IS CONTAINED WITHIN THE COLLECTION
+     * USES A STRING PROVIDED BY THE USER TO LOCATE THE BOOK TITLE WITHIN THE
+     * COLLECTION.
+     * IF THE TITLE IS FOUND, THE BOOK STATUS IS UPDATED TO AVAILABLE,
+     * IF NOT AN ERROR MESSAGE IS PROVIDED FOR THE USER
+     */
+    public void checkInBook(String bookTitle) {
+        for (Book book : bookCollection) {
+            if (book.getBookStatus().equals("Checked Out")) {
+                if (book.getBookTitle().toUpperCase().equals(bookTitle.toUpperCase())) {
                     LocalDateTime returned = null;
                     System.out.println("Checking in book....");
                     book.setBookStatus("Checked In");
                     book.setCheckOutDate(returned);
                     book.setReturnDate(returned);
                     System.out.println("..Book checked in, Now available");
-                    JOptionPane.showMessageDialog(null,"Book checked in, now available");
+                    JOptionPane.showMessageDialog(null, "Book checked in, now available");
                     break;
-                    
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid title provided for check-in" );
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid title provided for check-in");
                     System.out.println("Invalid Title provided");
-                    
+
                 }
 
-                
-            }else if(!book.getBookStatus().equals("Checked Out")){
+            } else if (!book.getBookStatus().equals("Checked Out")) {
                 continue;
-                
-                    
-                }
-            
+
+            }
+
         }
 
     }
+
+    
 }
