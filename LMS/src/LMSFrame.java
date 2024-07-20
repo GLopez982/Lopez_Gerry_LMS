@@ -71,7 +71,7 @@ public class LMSFrame extends JFrame implements ActionListener {
     /*
      * REQUIRED METHOD FOR ACTIONLISTENER. THIS METHOD IS USED TO PROVIDE
      * FUNCTIONALITY TO THE JCOMBO BOX AND SUBMIT BUTTON
-     * ALLOWING THE USER TO MAKE CHOICES AND FROM THE MENU OPTIONS.
+     * ALLOWING THE USER TO MAKE CHOICES FROM THE MENU OPTIONS.
      */
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
@@ -85,7 +85,8 @@ public class LMSFrame extends JFrame implements ActionListener {
                     String bookTitle;
                     String bookAuthor;
 
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root",
+                            "Whitehot2005!");
                     PreparedStatement statement = connection.prepareStatement(bookQuery);
                     bookGenre = JOptionPane.showInputDialog(rootPane, "Enter the Genre of the book").toUpperCase();
                     bookTitle = JOptionPane.showInputDialog(rootPane, "Enter the title of the book").toUpperCase();
@@ -113,7 +114,8 @@ public class LMSFrame extends JFrame implements ActionListener {
                     String titleQuery = "DELETE FROM BOOKCATALOGUE WHERE ISBN = ?";
                     String bookISBNString = JOptionPane.showInputDialog(rootPane, "Enter the book ISBN for removal:");
                     int bookISBN = Integer.parseInt(bookISBNString);
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root",
+                            "Whitehot2005!");
 
                     PreparedStatement statement = connection.prepareStatement(titleQuery);
                     if(bookISBNString != null && !bookISBNString.isEmpty()){
@@ -145,7 +147,8 @@ public class LMSFrame extends JFrame implements ActionListener {
                 try {
                     String titleQuery = "DELETE FROM BOOKCATALOGUE WHERE TITLE = ?";
                     String bookTitle = JOptionPane.showInputDialog(rootPane, "Enter the book title for removal:");
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root",
+                            "Whitehot2005!");
 
                     PreparedStatement statement = connection.prepareStatement(titleQuery);
                     if(bookTitle != null && !bookTitle.isEmpty()){
@@ -178,7 +181,8 @@ public class LMSFrame extends JFrame implements ActionListener {
                 try {
                     String titleQuery = "UPDATE BOOKCATALOGUE SET DUE_DATE = ?, BOOK_STATUS = ? WHERE TITLE = ?";
                     String bookTitle = JOptionPane.showInputDialog(rootPane, "Enter the book title for check-out:");
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root",
+                            "Whitehot2005!");
                     LocalDate date = LocalDate.now().plusWeeks(4);
                     Date sqlDate = Date.valueOf(date);
     
@@ -216,7 +220,8 @@ public class LMSFrame extends JFrame implements ActionListener {
                 try {
                     String titleQuery = "UPDATE BOOKCATALOGUE SET DUE_DATE = ?, BOOK_STATUS = ? WHERE TITLE = ?";
                     String bookTitle = JOptionPane.showInputDialog(rootPane, "Enter the book title for check-in");
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root",
+                            "Whitehot2005!");
                     Date sqlDate = null;
     
                     PreparedStatement statement = connection.prepareStatement(titleQuery);
@@ -266,11 +271,12 @@ public class LMSFrame extends JFrame implements ActionListener {
 
     }
     
-    //METHOD FOR GETTING THE DATABASE INFORMATION THAT IS CALLED FREQUENTLY AFTER EACH SELECTION. 
+    //METHOD FOR GETTING BOOK DATA FROM THE DATABASE. 
     public void getDatabase() {
         try {
             String getQuery = "SELECT * FROM BOOKCATALOGUE";
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lms", "root",
+                    "Whitehot2005!");
             Statement resulStatement = connection.createStatement();
 
             ResultSet resultSet = resulStatement.executeQuery(getQuery);
@@ -312,7 +318,6 @@ public class LMSFrame extends JFrame implements ActionListener {
 
     }
 
-    // MAIN METHOD FOR THE LMS GUI SYSTEM.
     public static void main(String[] args) {
         LMSFrame LMS = new LMSFrame();
         LMS.setVisible(true);

@@ -47,6 +47,7 @@ public class LMS {
                     System.out.println("Enter 'I' to remove book by ISBN number,'T' to remove by title or 'E to exit");
                     userRemoveChoice = keyboard.nextLine().toUpperCase().charAt(0);
 
+                        //NESTED SWITCH TO ALLOW USER TO SELECT WHICH METHOD TO USE FOR BOOK REMOVAL.
                         switch(userRemoveChoice){
                             case 'I':
                                 System.out.println("Please provide a book ISBN number to remove the book from the collection. ");
