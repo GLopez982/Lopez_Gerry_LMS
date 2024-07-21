@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cb7988b-05bd-44ca-8420-ddfd5f953e54" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/~$ftwareDevelopment_SDLC_Assignment.docx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS/.idea/artifacts/LMS_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/LMS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/LMS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/bin/LMSFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/out/production/LMS/BookCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/out/production/LMS/BookCollection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/out/production/LMS/LMS.class" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/out/production/LMS/LMS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/out/production/LMS/LMSFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/out/production/LMS/LMSFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/out/production/LMS/Porky.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/out/production/LMS/Porky2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/LMSFrame.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,20 +37,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/JAVA/LMS/LMS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JAVA/LMS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="LMS" />
@@ -73,6 +84,8 @@
       <updated>1716746896427</updated>
       <workItem from="1716746897495" duration="868000" />
       <workItem from="1716747811668" duration="130000" />
+      <workItem from="1721539083208" duration="28000" />
+      <workItem from="1721540590542" duration="45000" />
     </task>
     <servers />
   </component>
